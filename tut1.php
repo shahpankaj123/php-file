@@ -1,6 +1,5 @@
 <?php
-$ptr=fopen("1.txt","w");
-fwrite($ptr, "hello i am pankaj");
-echo "string";
+$ptr=fopen("1.txt","r");
+echo fgets($ptr);
 fclose($ptr);
 ?>
