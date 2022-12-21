@@ -72,7 +72,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 	?>
 <div class="container">
 	<div class="hd1"><h2>Signup Your Account</h2></div>
-<form action="/login_system/signup.php" method='POST'>
+<form action="/aryan/login_system/signup.php" method='POST'>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label" >Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Username" required>
