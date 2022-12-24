@@ -1,3 +1,41 @@
+<?php
+
+
+$con=mysqli_connect("localhost","root","","icoder");
+$error1=0;
+$error2=0;
+$error3=0;
+
+if ($_SERVER['REQUEST_METHOD']=='POST') {
+  $us=$_POST['username'];
+  $ps=$_POST['Password'];
+  $cps=$_POST['cpassword'];
+
+  $sqi="SELECT * FROM `data` WHERE username='$us'";
+  $result=mysqli_query($con,$sqi);
+  $num=mysqli_num_rows($result);
+  if($num==1)
+  {
+    $error1=1;
+  }
+  else{
+
+  if($ps==$cps)
+  {
+    $sql="INSERT INTO `data` (`username`, `password`, `Time`) VALUES ('$us', '$ps', current_timestamp())";
+    $result=mysqli_query($con,$sql);
+     $error2=1;
+  }
+  else{
+     $error3=1;
+  }
+ }
+}
+
+
+
+
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -15,32 +53,19 @@
       .bt-1{
         padding-left:3px ;
       }
+      .nav1{
+        overflow: auto;
+      }
+      .nav1{
+        overflow: auto;
+      }
+      
 
      </style>
 </head>
 <body>
-<?php
-session_start();
-if (isset($_SESSION['error1'])) {
-  echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-  <strong>Error!</strong> username already exists.
-  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-  </div>";
-}
-if (isset($_SESSION['error2'])) {
-  echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-  <strong>successfully</strong> your account created.
-  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-  </div>";
-}
-if (isset($_SESSION['error3'])) {
-  echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-  <strong>Error!</strong> password donot match.
-  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-  </div>";
-}
-?>
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav1">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">iCoder</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,8 +111,28 @@ if (isset($_SESSION['error3'])) {
     </div>
   </div>
 </nav>
+<?php
+if ($error1==1) {
+  echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+  <strong>Error!</strong> username already exists.
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+  </div>";
+}
+if ($error2==1) {
+  echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+  <strong>successfully</strong> your account created.
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+  </div>";
+}
+if ($error3==1) {
+  echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+  <strong>Error!</strong> password donot match.
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+  </div>";
+}
+?>
 
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false" class="nav2">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -215,8 +260,3 @@ if (isset($_SESSION['error3'])) {
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
-<?php
-session_start();
-session_unset();
-session_destroy();
-?>
