@@ -7,5 +7,5 @@ session_start();
  	exit();
  }
 include "nav.php";
-echo $_SESSION['Username'];
+echo $_SESSION['username'];
 ?>
