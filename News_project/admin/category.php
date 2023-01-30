@@ -11,11 +11,17 @@
             <div class="col-md-10">
                 <h1 class="admin-heading">All Categories</h1>
             </div>
+            <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+              <script
+                src="https://code.jquery.com/jquery-3.6.1.js"
+                integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+                crossorigin="anonymous">
+              </script>
             <div class="col-md-2">
                 <a class="add-new" href="add-category.php">add category</a>
             </div>
             <div class="col-md-12">
-                <table class="content-table">
+                <table class="content-table" id="myTable1">
                     <thead>
                         <th>S.No.</th>
                         <th>Category Name</th>
@@ -24,55 +30,30 @@
                         <th>Delete</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class='id'>1</td>
-                            <td>Html</td>
-                            <td>5</td>
-                            <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
-                        </tr>
-                        <tr>
-                            <td class='id'>2</td>
-                            <td>Css</td>
-                            <td>15</td>
-                            <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
-                        </tr>
-                        <tr>
-                            <td class='id'>3</td>
-                            <td>Java</td>
-                            <td>8</td>
-                            <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
-                        </tr>
-                        <tr>
-                            <td class='id'>4</td>
-                            <td>Php</td>
-                            <td>11</td>
-                            <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
-                        </tr>
-                        <tr>
-                            <td class='id'>5</td>
-                            <td>Python</td>
-                            <td>13</td>
-                            <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
-                        </tr>
-                        <tr>
-                            <td class='id'>6</td>
-                            <td>Scss</td>
-                            <td>3</td>
-                            <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
-                        </tr>
+                    <?php
+                         include "config.php";
+                          $sql = "SELECT * FROM `category`";
+                          $result = mysqli_query($conn,$sql);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                          echo"<tr>
+                          <td>". $row['category_id'] ."</td>
+                          <td>".$row['category_name'] ." </td>
+                          <td>". $row['post'] ."</td>
+                          <td><button type='button' class='btn btn-secondary'><a href='/aryan/News_project/admin/update-category.php?id=".$row['category_id']."' style='text-decoration:none; color:white;'>EDIT</a></button></td>
+                          <td><button type='button' class='btn btn-secondary'><a href='/aryan/News_project/admin/delete-category.php?id=".$row['category_id']."' style='text-decoration:none; color:white;'>Delete</a></button></td>
+
+                          </tr>";
+                         }
+
+                         ?>
                     </tbody>
                 </table>
-                <ul class='pagination admin-pagination'>
-                    <li class="active"><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>3</a></li>
-                </ul>
+                <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+                  <script>
+                  $(document).ready( function () {
+                  $('#myTable1').DataTable();
+                  } );
+                  </script>
             </div>
         </div>
     </div>

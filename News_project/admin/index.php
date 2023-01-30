@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     if ($num==1) {
         session_start();
         $_SESSION['username']=$user;
+        $_SESSION['user_id']=$row['user_id'];
         $_SESSION['role']=$row['role'];
 
         header("location:\aryan\News_project\admin\post.php");
