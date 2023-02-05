@@ -1,4 +1,5 @@
-<?php include "header.php"; ?>
+<?php include "header.php";
+ ?>
   <div id="admin-content">
       <div class="container">
           <div class="row">
@@ -20,78 +21,42 @@
                           <th>Delete</th>
                       </thead>
                       <tbody>
-                          <tr>
-                              <td class='id'>1</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>2</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>3</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>4</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>5</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>6</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>7</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>8</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
+                      <?php
+                         include "config.php";
+                         
+                          $sql = "SELECT * FROM `post`";
+                          $result = mysqli_query($conn,$sql);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $ide1=$row['category'];
+                            $ide2=$row['author'];
+
+                          $sq1="SELECT * FROM `category` WHERE category_id='$ide1'";
+                          $sq2="SELECT * FROM `user` WHERE user_id='$ide2'";
+
+                          $result1 = mysqli_query($conn,$sq1);
+                          $result2 = mysqli_query($conn,$sq2);
+
+                          $row1 = mysqli_fetch_assoc($result1);
+                          $row2 = mysqli_fetch_assoc($result2);
+
+
+
+
+                          echo"<tr>
+                          <td>". $row['post_id'] ."</td>
+                          <td>". $row['title'] ." </td>
+                          <td>". $row1['category_name'] ."</td>
+                          <td>". $row['post_date'] ."</td>
+                          <td>". $row2['username'] ."</td>
+                           
+                          
+                          <td><button type='button' class='btn btn-secondary'><a href='/aryan/News_project/admin/update-post.php?id=".$row['post_id']."' style='text-decoration:none; color:white;'>EDIT</a></button></td>
+                          <td><button type='button' class='btn btn-secondary'><a href='/aryan/News_project/admin/delete-post.php?id=".$row['post_id']."' style='text-decoration:none; color:white;'>Delete</a></button></td>
+
+                          </tr>";
+                         }
+
+                         ?>
                       </tbody>
                   </table>
                   <ul class='pagination admin-pagination'>

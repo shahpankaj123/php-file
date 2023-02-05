@@ -32,14 +32,23 @@
                       <tbody>
                          <?php
                          include "config.php";
+                         
                           $sql = "SELECT * FROM `user`";
                           $result = mysqli_query($conn,$sql);
                           while ($row = mysqli_fetch_assoc($result)) {
+                            if($row['role']==1)
+                            {
+                                $rol="Admin";
+                            }
+                            else{
+                                $rol="Normal";
+                            }
                           echo"<tr>
                           <td>". $row['user_id'] ."</td>
                           <td>".$row['first_name']."  ".$row['last_name']." </td>
                           <td>". $row['username'] ."</td>
-                          <td>". $row['role'] ."</td>
+                           <td>". $rol ."</td>
+                          
                           <td><button type='button' class='btn btn-secondary'><a href='/aryan/News_project/admin/update-user.php?id=".$row['user_id']."' style='text-decoration:none; color:white;'>EDIT</a></button></td>
                           <td><button type='button' class='btn btn-secondary'><a href='/aryan/News_project/admin/delete-user.php?id=".$row['user_id']."' style='text-decoration:none; color:white;'>Delete</a></button></td>
 

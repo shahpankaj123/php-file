@@ -1,8 +1,5 @@
 <?php include "header.php"; 
-  if($_SESSION['role']==0)
-   {
-     header("location:\aryan\News_project\admin\post.php");
-   }
+  
 ?>
   <div id="admin-content">
       <div class="container">
@@ -15,7 +12,7 @@
                   <form  action="save-post.php" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
                           <label for="post_title">Title</label>
-                          <input type="text" name="post_title" class="form-control" autocomplete="off" required>
+                          <input type="text" name="post_title" class="form-control" autocomplete="off"  required>
                       </div>
                       <div class="form-group">
                           <label for="exampleInputPassword1"> Description</label>
