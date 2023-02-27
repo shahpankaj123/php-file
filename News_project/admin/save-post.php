@@ -49,7 +49,7 @@ if($result)
     header("location:\aryan\News_project\admin\post.php");
 }
 else {
-    echo "failed query";
+    echo "error";
 }
 
 

@@ -5,25 +5,47 @@
                 <div class="col-md-8">
                   <!-- post-container -->
                     <div class="post-container">
+                        <?php
+                        $id=$_GET['id'];
+                
+                        include "config.php";
+                         
+                        $sql = "SELECT * FROM `post` WHERE post_id='$id'";
+                        $result = mysqli_query($conn,$sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $ide1=$row['category'];
+                        $ide2=$row['author'];
+
+                        $sq1="SELECT * FROM `category` WHERE category_id='$ide1'";
+                        $sq2="SELECT * FROM `user` WHERE user_id='$ide2'";
+
+                        $result1 = mysqli_query($conn,$sq1);
+                        $result2 = mysqli_query($conn,$sq2);
+
+                        $row1 = mysqli_fetch_assoc($result1);
+                        $row2 = mysqli_fetch_assoc($result2);
+                        
+
+                        ?>
                         <div class="post-content single-post">
-                            <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+                            <h3><?php echo $row['title'];?></h3>
                             <div class="post-information">
                                 <span>
                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                    Html
+                                    <?php echo $row1['category_name'];?>
                                 </span>
                                 <span>
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                    <a href='author.php'>Admin</a>
+                                    <a href='author.php'><?php echo $row2['username'];?></a>
                                 </span>
                                 <span>
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                                    01 Nov, 2019
+                                    <?php echo $row['post_date'];?>
                                 </span>
                             </div>
-                            <img class="single-feature-image" src="images/post_1.jpg" alt=""/>
+                            <img class="single-feature-image" src='admin/upload/<?php echo $row['post_img']?>' alt=""/>
                             <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                            <?php echo $row['description'];?>
                             </p>
                         </div>
                     </div>

@@ -35,10 +35,10 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class='menu'>
-                    <li><a href='category.php'>Business</a></li>
-                    <li><a href='category.php'>Entertainment</a></li>
-                    <li><a href='category.php'>Sports</a></li>
-                    <li><a href='category.php'>Politics</a></li>
+                    <li><a href='category.php?id=56'>Business</a></li>
+                    <li><a href='category.php?id=57'>Entertainment</a></li>
+                    <li><a href='category.php?id=35'>Sports</a></li>
+                    <li><a href='category.php?id=31'>Politics</a></li>
                 </ul>
             </div>
         </div>
