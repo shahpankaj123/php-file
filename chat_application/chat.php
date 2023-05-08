@@ -44,21 +44,28 @@ if($_SERVER['REQUEST_METHOD']=='POST')
         $mg=$row['unique_id'];
         $sql1="SELECT * FROM `messages` WHERE `messages`.`incoming_msg_id`='$idem' AND `messages`.`outgoing_msg_id`='$mg'";
         $sql2="SELECT * FROM `messages` WHERE `messages`.`incoming_msg_id`='$mg' AND `messages`.`outgoing_msg_id`='$idem'";
+        $sql3="SELECT * FROM `messages`";
 
         $result1 = mysqli_query($conn,$sql1);
         $result2 = mysqli_query($conn,$sql2);
+        $result3 = mysqli_query($conn,$sql3);
 
-        while(($row1=mysqli_fetch_assoc($result1)) || ($row2=mysqli_fetch_assoc($result2))){
-          //$row2=mysqli_fetch_assoc($result2);
-           $a=$row2;  
+        while($row3=mysqli_fetch_assoc($result3)){
+          $row1=mysqli_fetch_assoc($result1); 
+          $row2=mysqli_fetch_assoc($result2); 
           //$message=$row1['msg'];
-         $message="";
-          if($row1!=0 || $a!=0){
+        
+          //$message=$row1['msg'];
+          //$message2=$row2['msg'];
+          if($row1)
+          {
           $message=$row1['msg'];
-          $message2=$row2['msg'];
-          echo "<h3><p style='color:red; margin:5px padding:5px; font-size:20px; text-align:right;'> $message</p></h3><hr>";
+          echo "<h3><p style='color:red; margin:5px padding:5px; font-size:20px; text-align:right;'> $message</p></h3><hr>";}
+          if($row2){
+            $message2=$row2['msg'];
           echo "<h3><p style='color:green; margin:5px padding:5px; font-size:20px; text-align:left;'> $message2</p></h3><hr>";}
         }
+      
        // while( $row2=mysqli_fetch_assoc($result2)){
              
          // $message2=$row2['msg'];
