@@ -44,9 +44,12 @@
         {
              $name= $row['fname']." ".$row['lname'];
              $ide=$row['unique_id'];
-             echo "<a href='\aryan\chat_application\chat.php?id=$ide'>$name  </a></b>" ;
+             $img_name=$row['img'];
+             echo "<b style=' font-size:18px;'><a href='\aryan\chat_application\chat.php?id=$ide'>$name  </a></b>" ;
+             echo "<hr>";
+             
         }
-
+  
 
         ?>
   

@@ -17,6 +17,7 @@
           $_SESSION['login']=1;
           $_SESSION['uniq_id']=$row['unique_id'];
           $_SESSION['email']=$email;
+          $_SESSION['username']=$row['fname'];
            header("location: users.php");
 
         }

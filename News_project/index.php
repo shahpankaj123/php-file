@@ -8,8 +8,16 @@
                     
                         <?php
                           include "config.php";
+                          $a=0;
+                          $sql5 = "SELECT * FROM `post`";
+                          $result5 = mysqli_query($conn,$sql5);
+                          while ($row = mysqli_fetch_assoc($result5)) {
+                            $a=$a+1;
+                          }
+                          $a=$a/2;
+                          $b=rand(1,$a);
                          
-                          $sql = "SELECT * FROM `post`";
+                          $sql = "SELECT * FROM `post` LIMIT 5 OFFSET $b ";
                           $result = mysqli_query($conn,$sql);
                           while ($row = mysqli_fetch_assoc($result)) {
                             $ide1=$row['category'];
